@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+</head>
+<script src="https://unpkg.com/vue@next"></script>
+
+<body>
+    <div id="app"></div>
+</body>
+
+
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                todoList: ["吃饭", "睡觉", "工作", "娱乐"],
+                inputText: ""
+            }
+        },
+        methods: {
+            addTodo() {
+                this.todoList.push(this.inputText);
+                this.inputText = ""
+            }
+        },
+        template: `<div>
+                <title-bar/>
+                <input v-model="inputText"/>
+                <button v-on:click="addTodo">添加</button>
+                <todoList v-bind:list="todoList">
+            </div>`
+    });
+    app.component("todoList", {
+        props: ["list"],
+        template: 
+            `<ul>
+                <li v-for="(item, index) in list">{{item}} - {{index}}</li>
+            </ul>`
+    });
+    app.component("title-bar", {
+        template: `<h5>todo</h5>`
+    });
+    app.mount("#app");
+</script>
+
+</html>
