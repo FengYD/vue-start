@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+</head>
+<script src="https://unpkg.com/vue@next"></script>
+
+<body>
+    <div id="app"></div>
+</body>
+
+
+<script>
+    const app = Vue.createApp({
+        data() {
+            return { 
+                message: "Hello World",
+                tpl: "<h5>h5tpl</h5>",
+                title: "baidu",
+                count: 1,
+                todoList: ["吃饭", "睡觉", "工作", "娱乐"],
+                person: {
+                    name: "老王",
+                    work: "老师",
+                    sex: "男",
+                    age: 38
+                },
+                isShow: false
+            }
+        },
+        methods:{
+            changeMessage() {
+                this.message = "Hello Vue"
+            },
+            countInc() {
+                this.count++
+            },
+            countDesc() {
+                this.count--
+            }
+        },
+        template:
+        // {{}}里面执行字符串拼接、数值运算等等(表达式)
+        // `
+        //     <div>{{message}}</div>
+        //     <div>{{"Hello" + " " + "Vue"}}</div>
+        //     <div>{{1 + 2}}</div>
+        //     <div>{{Math.round(3.14)}}</div>
+        // `
+
+        // v-once 限制{{}}里的元素只渲染一次
+        // `
+        //     <div v-on:click="changeMessage" v-once>{{message}}</div>
+        // `
+
+        // v-html 可以渲染html
+        // `
+        //     <div v-html="tpl"></div>
+        // `
+
+        // v-bind
+        // `
+        //     <div v-bind:class="title">{{message}}</div>
+        // `
+        // `
+        //     <div :class="title">{{message}}</div>
+        // `
+
+        // v-if 条件判断
+        // `
+        //     <button v-on:click="countInc">+</button>
+        //     <button v-on:click="countDesc">-</button>
+        //     <div v-if="count==1">{{message}}</div>
+        //     <div v-else-if="count==2">{{title}}</div>
+        //     <div v-else>unknown</div>
+        // `
+
+        // v-for
+        // `
+        //     <ul>
+        //         <li v-for="(item, index) in todoList">{{item}} - {{index}}</li>
+        //     </ul>
+
+        //     <ul>
+        //         <li v-for="(attr, key, index) in person">{{key}} - {{attr}} - {{index}}</li>
+        //     </ul>
+        // `
+        `
+            <div v-show="isShow">{{message}}</div>
+        `
+    })
+    const vm = app.mount("#app")
+</script>
+
+</html>

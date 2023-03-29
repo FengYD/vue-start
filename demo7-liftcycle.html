@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeCycle</title>
+</head>
+<script src="https://unpkg.com/vue@next"></script>
+
+<body>
+    <div id="app"></div>
+</body>
+
+<!-- vue 生命周期函数详解图 -->
+<!-- https://cn.vuejs.org/guide/essentials/lifecycle.html -->
+
+<!-- 
+beforeCreate()  在Vue应用创建之前执行
+created()       在Vue应用创建完成后执行
+beforeMount()   在模板渲染之前执行
+mounted()       在模板渲染之后执行
+beforeUpdate()  在数据变化后，界面更新之前执行
+updated()       在数据变化后，界面更新之后执行
+beforeUnmount() 在Vue应用销毁之前执行
+unmounted()     在Vue应用销毁之后执行 
+-->
+
+
+<script>
+    const app = Vue.createApp({
+        beforeCreate() {
+            console.log("beforeCreated")
+        },
+        created() {
+            console.log("created")
+        },
+        beforeMount() {
+            console.log("beforeMount")
+        },
+        mounted() {
+            console.log("mounted")
+        },
+        // 控制台执行 vm.$data.message = "Hello Vue"
+        beforeUpdate() {
+            console.log("beforeUpdate")
+            console.log(document.getElementById("app").innerHTML)
+        },
+        updated() {
+            console.log("updated")
+            console.log(document.getElementById("app").innerHTML)
+        },
+         // 控制台执行 app.unmounted()
+        beforeUnmount() {
+            console.log("beforeUnmount")
+            console.log(document.getElementById("app").innerHTML)
+        },
+        unmounted() {
+            console.log("unmounted")
+            console.log(document.getElementById("app").innerHTML)
+        },
+        data() {
+            return { message: "Hello World" } 
+        },
+        template: `<div>{{message}}</div>`
+    })
+    const vm = app.mount("#app")
+</script>
+
+</html>
